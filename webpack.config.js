@@ -1,32 +1,58 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: 'index.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.html$/,
-        use: ['html-loader'],
-      },
+    entry: {
+        main: path.resolve(__dirname, './src/scripts/Swiper.js'),
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'webpack Boilerplate',
+            template: path.resolve(__dirname, './src/html/Swiper.html'), // шаблон
+            filename: 'Swipe.html', // название выходного файла
+        }),
     ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
-  ],
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000,
-  },
-};
+    module: {
+        rules: [
+            // JavaScript
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader'],
+            },
+            // изображения
+            {
+                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                type: 'asset/resource',
+            },
+            // шрифты и SVG
+            {
+                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                type: 'asset/inline',
+            },
+            // CSS, PostCSS, Sass
+            {
+                test: /\.(scss|css)$/,
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+            },
+        ],
+    },
+
+    mode: 'development',
+    devServer: {
+        historyApiFallback: true,
+        static: {
+            directory: './dist/Swipe.html',
+        },
+        open: true,
+        compress: true,
+        hot: true,
+        port: 8080,
+    },
+    
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: 'Swipe.bundle.js',
+    },
+}
