@@ -1,8 +1,10 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin');
+//1 способ, который облегчит жизнь в разы с фотографиями
+//const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
     entry: {
         main: path.resolve(__dirname, './src/scripts/Swiper.js'),
     },
@@ -12,12 +14,13 @@ module.exports = {
     },
 
     plugins: [
-        new CopyPlugin({
-            patterns: [
-                { from: 'src/Resources', to: 'Resources' },
-                { from: 'src/styles', to: 'styles' }
-            ],
-        }),
+    //1 способ, который облегчит жизнь в разы с фотографиями
+    //    new CopyPlugin({
+    //        patterns: [
+    //            { from: 'src/Resources', to: 'Resources' },
+    //            { from: 'src/styles', to: 'styles' }
+    //       ],
+    //    }),
            new HtmlWebpackPlugin({
                title: 'Webpack Boilerplate',
                template: path.resolve(__dirname, './src/html/Swiper.html'),
@@ -35,8 +38,12 @@ module.exports = {
             },
             // изображения
             {
-                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                test: /\.(?:ico|gif|png|jpg|jpeg|ico)$/i,
                 type: 'asset/resource',
+                //2 способ, который меня чуть не убил...
+                generator: {
+                    filename: 'Resources/[name][ext][query]'
+                  }
             },
             // шрифты и SVG
             {
@@ -51,7 +58,6 @@ module.exports = {
         ],
     },
     
-    mode: 'development',
     devServer: {
         historyApiFallback: {
             index: 'Swipe.html'
