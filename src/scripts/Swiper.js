@@ -1,4 +1,3 @@
-import example1 from '../styles/style.css'
 document.addEventListener('DOMContentLoaded', function() {
     // Динамическая загрузка библиотеки Swiper
     var script = document.createElement('script');

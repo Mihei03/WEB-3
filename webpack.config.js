@@ -15,6 +15,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: 'src/Resources', to: 'Resources' },
+                { from: 'src/styles', to: 'styles' }
             ],
         }),
            new HtmlWebpackPlugin({
