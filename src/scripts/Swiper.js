@@ -8,14 +8,14 @@ function importAllImages(r) {
     return images;
   }
 
-  const images = importAllImages(require.context('../Resources/', true, /\.(png|jpe?g|svg|ico)$/));
+const images = importAllImages(require.context('../Resources/', true, /\.(png|jpe?g|svg|ico)$/));
 
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const imageUrl = images['./myImage.png'].default; // замени 'myImage.png' на имя своего изображения
     const imageElement = document.createElement('img');
     imageElement.src = imageUrl;
     document.body.appendChild(imageElement);
-    });
+});
 
 // старый код свайпера
 document.addEventListener('DOMContentLoaded', function() {
