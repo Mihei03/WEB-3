@@ -2,7 +2,7 @@ body {
     font-family: Times New Roman;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #FFFFFF 61%, #000000 39%);
+    background: linear-gradient(to bottom, #FFFFFF 67%, #000000 33%);
 }
 
 .container {
@@ -119,13 +119,47 @@ li {
     .header-mobile {
       display: none
     }
-  }
+}
   
-  @media  screen and (max-width: 768px) {
+@media  screen and (max-width: 768px) {
     .header-pc {
       display: none
     }
     .header-mobile {
       display: block
     }
-  }
+}
+
+.vacancy-widget-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.vacancy-card {
+    width: 80%;
+    max-width: 400px; /* Ширина виджета */
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ff0000;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.vacancy-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.vacancy-card p {
+    margin-bottom: 8px;
+}
+
+.vacancy-card a {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
