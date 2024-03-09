@@ -1,18 +1,29 @@
 const path = require('path')
-const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
         main: path.resolve(__dirname, './src/scripts/Swiper.js'),
     },
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: 'Swipe.js',
+    },
+
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'webpack Boilerplate',
-            template: path.resolve(__dirname, './src/html/Swiper.html'), // шаблон
-            filename: 'Swipe.html', // название выходного файла
+        new CopyPlugin({
+            patterns: [
+                { from: 'src/Resources', to: 'Resources' },
+            ],
         }),
+           new HtmlWebpackPlugin({
+               title: 'Webpack Boilerplate',
+               template: path.resolve(__dirname, './src/html/Swiper.html'),
+               filename: 'Swipe.html',
+           }),
     ],
+
     module: {
         rules: [
             // JavaScript
@@ -38,21 +49,19 @@ module.exports = {
             },
         ],
     },
-
+    
     mode: 'development',
     devServer: {
-        historyApiFallback: true,
+        historyApiFallback: {
+            index: 'Swipe.html'
+        },
         static: {
-            directory: './dist/Swipe.html',
+            directory: path.join(__dirname, 'dist'), // путь до папки сборки
         },
         open: true,
         compress: true,
         hot: true,
         port: 8080,
     },
-    
-    output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'Swipe.bundle.js',
-    },
+
 }
