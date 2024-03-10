@@ -23,12 +23,16 @@ function createVacancyWidget(vacancyData) {
     vacancyWidgetElement.appendChild(vacancyElement);
 }
 
-// Запрос данных о вакансии с помощью API hh.ru
-axios.get('https://api.hh.ru/vacancies/7760476')
-    .then((response) => {
-        const vacancyData = response.data;
-        createVacancyWidget(vacancyData);
-    })
-    .catch((error) => {
-        console.error('Ошибка при загрузке данных о вакансии:', error);
-    });
+// Запрос данных о вакансиях с помощью API hh.ru (данные для двух вакансий)
+const vacancyIds = ['7760476', '93189084'];
+
+vacancyIds.forEach((vacancyId) => {
+    axios.get(`https://api.hh.ru/vacancies/${vacancyId}`)
+        .then((response) => {
+            const vacancyData = response.data;
+            createVacancyWidget(vacancyData);
+        })
+        .catch((error) => {
+            console.error('Ошибка при загрузке данных о вакансии:', error);
+        });
+});
