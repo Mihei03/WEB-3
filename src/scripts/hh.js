@@ -24,7 +24,7 @@ function createVacancyWidget(vacancyData) {
 }
 
 // Запрос данных о вакансиях с помощью API hh.ru (данные для двух вакансий)
-const vacancyIds = ['7760476', '93189084'];
+const vacancyIds = ['7760476', '93189084', '93189025'];
 
 vacancyIds.forEach((vacancyId) => {
     axios.get(`https://api.hh.ru/vacancies/${vacancyId}`)
