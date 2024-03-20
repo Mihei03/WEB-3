@@ -1,4 +1,3 @@
-import './Swiper.js';
 document.addEventListener('DOMContentLoaded', function() {
     const button = document.getElementById('findButton');
     button.addEventListener('click', function() {
@@ -9,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 export function requestVacancies(){
     let searchText = document.getElementById("search-input").value;
-    axios.get(`https://api.hh.ru/vacancies?text=${searchText}`)
+    axios.get(`https://api.hh.ru/vacancies/${vacancyId}`)
     .then((response) => {
         const data = response.data;
         displayCards(data);
@@ -42,25 +41,11 @@ export function createCard(cardData) {
 export function displayCards(data){
     let items = data.items;
 
-    var swiperWrapper = document.querySelector('.swiper-wrapper');
-    swiperWrapper.innerHTML = "";
+    var cardContainer = document.getElementById("card-container");
+    cardContainer.innerHTML = "";
     
     items.forEach(function(item) {
         var card = createCard(item);
-        var slide = document.createElement('div');
-        slide.classList.add('swiper-slide');
-        slide.appendChild(card);
-        swiperWrapper.appendChild(slide);
-    });
-
-    // Инициализация слайдера Swiper
-    document.addEventListener('DOMContentLoaded', function() {
-        var swiperVacancies = new Swiper('.swiper-container-vacancies', {
-            loop: true,
-            navigation: {
-                nextEl: '.swiper-button-next1',
-                prevEl: '.swiper-button-prev1'
-            }
-        });
-    });
+        cardContainer.appendChild(card);
+    })
 }

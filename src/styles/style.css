@@ -185,3 +185,8 @@ li {
     justify-content: center;
     text-align: center;
 }
+
+.card-container{
+    max-height: 400px; /* Установим максимальную высоту контейнера */
+    overflow-y: auto;  
+}
