@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 		<link rel="stylesheet" href="../styles/style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-jscrollpane/2.4.13/style/jquery.jscrollpane.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jscrollpane/2.4.13/scripts/jquery.jscrollpane.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jscrollpane/2.4.13/scripts/jquery.jscrollpane.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script defer src="Swipe.js"></script></head>
 	
@@ -28,7 +28,7 @@
 			</div>
 		  </div>
 		<!-- Контейнер для слайдера -->
-		<div class="swiper-container">
+		<div class="swiper-container" id="swiper1">
 			<div class="swiper-wrapper">
 				<!-- Слайды -->
 				<div class="swiper-slide"><img src="../Resources/Kazuha.png" alt="Kazuha"> </div>
@@ -56,9 +56,15 @@
 				<form>
 					<input id="search-input">
 				</form>
-				<button id="search-input">Найти</button>
+				<button id="findButton">Найти</button>
 			</div>
-			<div class="card-container" id="card-container">
+			<div class="swiper-container" id="swiper2">
+				<div class="swiper-wrapper">
+					<div class="card-container" id="card-container"></div>
+				</div>
+				<div class="header-pc">
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
 				</div>
 			</div>
 		</div>

@@ -1,14 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     const button = document.getElementById('findButton');
+    if (button) {
     button.addEventListener('click', function() {
         requestVacancies();
-    });
+    });}
+    else {
+        console.error('Кнопка с id="findButton" не найдена.');
+    }
 });
 
 
 export function requestVacancies(){
     let searchText = document.getElementById("search-input").value;
-    axios.get(`https://api.hh.ru/vacancies/${vacancyId}`)
+    axios.get(`https://api.hh.ru/vacancies?text=${searchText}`)
     .then((response) => {
         const data = response.data;
         displayCards(data);
@@ -22,17 +26,17 @@ export function createCard(cardData) {
     var card = document.createElement("div");
     card.classList.add("card");
     let salaryMessage;
-    if(cardData.salary.from == null){
+    if(cardData.salary && cardData.salary.from == null){
         salaryMessage = "Требуется уточнение"
     }
     else {
-        salaryMessage = cardData.salary.from
+        salaryMessage = cardData.salary && cardData.salary.from ? cardData.salary.from : "Требуется уточнение";
     }
     
     card.innerHTML = `
         <h2>${cardData.name}</h2>
         <p>Зарплата от ${salaryMessage}</p>
-        <p>Подробнее: ${cardData.alternate_url}</p>
+        <a href="${cardData.alternate_url}" target="_blank">Подробнее</a>
     `;
 
     return card;

@@ -11,9 +11,7 @@ function importAllImages(r) {
 const images = importAllImages(require.context('../Resources/', true, /\.(png|jpe?g|svg|ico)$/));
 
 document.addEventListener('DOMContentLoaded', function() {
-    const imageUrl = images['./myImage.png'].default; // замени 'myImage.png' на имя своего изображения
     const imageElement = document.createElement('img');
-    imageElement.src = imageUrl;
     document.body.appendChild(imageElement);
 });
 
@@ -23,16 +21,23 @@ document.addEventListener('DOMContentLoaded', function() {
     var script = document.createElement('script');
     script.src = 'https://unpkg.com/swiper/swiper-bundle.min.js';
     script.onload = function() {
-    // Инициализация слайдера Swiper
-        var swiper = new Swiper('.swiper-container', {
-            // Опции слайдера
-            loop: true, // Бесконечный цикл
+        // Инициализация первого слайдера Swiper
+        var swiper1 = new Swiper('#swiper1', {
+            loop: true,
             navigation: {
-                nextEl: '.swiper-button-next', // Кнопка "Next"
-                prevEl: '.swiper-button-prev', // Кнопка "Prev"
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
             },
         });
-    }
-    document.head.appendChild(script);
-});
 
+        // Инициализация второго слайдера Swiper
+        var swiper2 = new Swiper('#swiper2', {
+            loop: true,
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+        });
+    };
+    document.head.appendChild(script);
+  });

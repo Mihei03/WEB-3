@@ -49,7 +49,7 @@ h3 {
     color: grey;
 }
 
-.swiper-container {
+#swiper1 {
     width: 100%;
     max-width: 1200px;
     height: 400px;
@@ -57,7 +57,7 @@ h3 {
     overflow: hidden;
     margin: 20px auto;
 }
-.swiper-container-vacancies {
+#swiper2 {
     width: 100%;
     max-width: 1200px;
     height: 400px;
