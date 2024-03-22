@@ -1,5 +1,5 @@
 //2 способ который меня чуть не убил
-import styles from '../styles/style.css'
+import '../styles/style.css'
 function importAllImages(r) {
     let images = {};
     r.keys().forEach((key) => {
